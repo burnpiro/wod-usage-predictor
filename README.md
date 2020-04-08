@@ -45,6 +45,44 @@ Explain what these tests test and why
 Give an example
 ```
 
+## Data Processing
+
+- [Weather Data Source](http://worldweatheronline.com)
+- [Usage Source](https://www.wroclaw.pl/open-data/dataset/przejazdy-wroclawskiego-roweru-miejskiego-archiwalne)
+
+For weather data description check Files description [This Link](https://www.worldweatheronline.com/developer/api/docs/historical-weather-api.aspx)
+
+For each day we're extracting data in format:
+```
+[
+    'date',
+    'time',
+    'totalSnow_cm',
+    'sunrise',
+    'sunset',
+    'tempC',
+    'FeelsLikeC',
+    'HeatIndexC',
+    'windspeedKmph',
+    'weatherCode',
+    'precipMM',
+    'humidity',
+    'visibility',
+    'pressure',
+    'cloudcover'
+]
+```
+
+Most of the data comes directly from the source except:
+- **time** - source data converted from string `1300` to number `13*60`
+- **sunrise** - date converted from `HH:mm AM` to minutes, started from midnight
+- **sunset** - date converted from `HH:mm PM` to minutes, started from midnight
+
+#### To run data processing:
+```bash
+python weather_parser.py
+```
+
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
