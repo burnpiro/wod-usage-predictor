@@ -64,4 +64,4 @@ for file in weather_data_files:
     df = pd.DataFrame(month_data, columns=COLUMNS)
     path = file.split('.')[1]
     df.to_csv('.'+path+'.csv')
-    df.to_csv('.'+path+'.csv')
+    df.to_csv(concat_file, mode='a', header=False)
