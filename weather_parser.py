@@ -8,25 +8,6 @@ from settings import *
 weather_data_files = sorted(glob('./data/weather/*.json'))
 # Files description https://www.worldweatheronline.com/developer/api/docs/historical-weather-api.aspx
 
-COLUMNS = [
-    'date',
-    'time',
-    'timestamp',
-    'totalSnow_cm',
-    'sunrise',
-    'sunset',
-    'tempC',
-    'FeelsLikeC',
-    'HeatIndexC',
-    'windspeedKmph',
-    'weatherCode',
-    'precipMM',
-    'humidity',
-    'visibility',
-    'pressure',
-    'cloudcover'
-]
-
 concat_file = 'data/weather/weather.csv'
 
 for file in weather_data_files:
@@ -63,5 +44,5 @@ for file in weather_data_files:
 
     df = pd.DataFrame(month_data, columns=COLUMNS)
     path = file.split('.')[1]
-    df.to_csv('.'+path+'.csv')
-    df.to_csv(concat_file, mode='a', header=False)
+    df.to_csv(f'.{path}.csv')
+    df.to_csv(concat_file, mode='a', header=False, index=False)
