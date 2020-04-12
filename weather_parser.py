@@ -3,12 +3,17 @@ import pandas as pd
 from glob import glob
 from datetime import datetime, timedelta
 import time
+import os
 from settings import *
 
 weather_data_files = sorted(glob('./data/weather/*.json'))
 # Files description https://www.worldweatheronline.com/developer/api/docs/historical-weather-api.aspx
 
 concat_file = 'data/weather/weather.csv'
+
+if os.path.isfile(concat_file):
+    os.remove(concat_file)
+
 
 for file in weather_data_files:
     with open(file) as f:

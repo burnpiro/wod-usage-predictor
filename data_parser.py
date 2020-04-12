@@ -4,7 +4,7 @@ import os
 from glob import glob
 import time
 from datetime import datetime
-from weather_parser import COLUMNS
+from settings import COLUMNS
 
 data_path = 'data/bike_data/'
 
@@ -44,6 +44,11 @@ def parse_x(x, weather_column):
     column_data = weather_data[(weather_data['timestamp'] < year_time + x['start_time']) & (
             weather_data['timestamp'] >= year_time + x['start_time'] - (60 * 60))][
         weather_column]
+    if len(column_data.values) == 0:
+        # IF THERE IS NOT column_data that means there is a timezone change and we're missing an hour
+        # Solution is to get closes previous weather data and use it instead
+        column_data = weather_data[(weather_data['timestamp'] < year_time + x['start_time'])][
+            weather_column].tail(1)
     return column_data.values[0]
 
 
