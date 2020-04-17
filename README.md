@@ -89,6 +89,29 @@ Generate WRM data per year and list of places in `data/bike_data` directory
 ```bash
 python data_parser.py
 ```
+
+Generated dataset has format of:
+```
+    'bike_number',
+    'start_time',
+    'end_time',
+    'rental_place',
+    'return_place',
+    'year',
+    'totalSnow_cm',
+    'sunrise',
+    'sunset',
+    'tempC',
+    'FeelsLikeC',
+    'HeatIndexC',
+    'windspeedKmph',
+    'weatherCode',
+    'precipMM',
+    'humidity',
+    'visibility',
+    'pressure',
+    'cloudcover'
+```
 **WARNING!!!** It takes a while to run.
 
 ## Deployment
