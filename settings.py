@@ -48,3 +48,22 @@ WEATHER_CODES = {
     392: 'Patchy light snow in area with thunder',
     395: 'Moderate or heavy snow in area with thunder'
 }
+
+COLUMNS = [
+    'date',
+    'time',
+    'timestamp',
+    'totalSnow_cm',
+    'sunrise',
+    'sunset',
+    'tempC',
+    'FeelsLikeC',
+    'HeatIndexC',
+    'windspeedKmph',
+    'weatherCode',
+    'precipMM',
+    'humidity',
+    'visibility',
+    'pressure',
+    'cloudcover'
+]

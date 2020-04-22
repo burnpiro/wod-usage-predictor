@@ -15,6 +15,7 @@ pandas>=1.0.1
 notebook>=6.0.3
 matplotlib>=3.2.0
 jupyter-core>=4.6.3
+xlrd>=1.2.0
 ```
 
 ### Installing
@@ -79,9 +80,39 @@ Most of the data comes directly from the source except:
 - **sunset** - date converted from `HH:mm PM` to minutes, started from midnight
 
 #### To run data processing:
+Process weather data
 ```bash
 python weather_parser.py
 ```
+
+Generate WRM data per year and list of places in `data/bike_data` directory
+```bash
+python data_parser.py
+```
+
+Generated dataset has format of:
+```
+    'bike_number',
+    'start_time',
+    'end_time',
+    'rental_place',
+    'return_place',
+    'year',
+    'totalSnow_cm',
+    'sunrise',
+    'sunset',
+    'tempC',
+    'FeelsLikeC',
+    'HeatIndexC',
+    'windspeedKmph',
+    'weatherCode',
+    'precipMM',
+    'humidity',
+    'visibility',
+    'pressure',
+    'cloudcover'
+```
+**WARNING!!!** It takes a while to run.
 
 ## Deployment
 
