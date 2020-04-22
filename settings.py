@@ -67,3 +67,71 @@ COLUMNS = [
     'pressure',
     'cloudcover'
 ]
+
+# Target for given station
+TARGET_COLUMN = [
+    'num_of_rents'
+]
+
+# TODO Update columns when bikedata is processed into station coordinates
+BIKE_COLUMNS = [
+    'bike_number',
+    'start_time',
+    'end_time',
+    'rental_place',
+    'return_place',
+    'year',
+]
+
+WEATHER_COLS = [
+    'totalSnow_cm',
+    'sunrise',
+    'sunset',
+    'tempC',
+    'FeelsLikeC',
+    'HeatIndexC',
+    'windspeedKmph',
+    'weatherCode',
+    'precipMM',
+    'humidity',
+    'visibility',
+    'pressure',
+    'cloudcover'
+]
+
+# List of categorical columns
+CATEGORIES = {
+    'weatherCode': WEATHER_CODES
+}
+
+# Columns to be normalized
+# TODO Update columns when bikedata is processed into station coordinates
+NORM_COLS = [
+    'tempC',
+    'FeelsLikeC',
+    'HeatIndexC',
+]
+
+# Columns to be scaled from 0-1
+# TODO Update columns when bikedata is processed into station coordinates
+SCALE_COLS = [
+    'year',
+    'totalSnow_cm',
+    'sunrise',
+    'sunset',
+    'windspeedKmph',
+    'precipMM',
+    'humidity',
+    'visibility',
+    'pressure',
+    'cloudcover',
+]
+
+# Columns which are copied from dataset directly
+EXTRA_COLS = [
+
+]
+
+DATETIME_COLUMN = 'start_time'
+
+FULL_DATA = BIKE_COLUMNS + WEATHER_COLS + TARGET_COLUMN
