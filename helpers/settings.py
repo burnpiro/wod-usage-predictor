@@ -49,7 +49,7 @@ WEATHER_CODES = {
     395: 'Moderate or heavy snow in area with thunder'
 }
 
-COLUMNS = [
+WEATHER_DATA_COLUMNS = [
     'date',
     'time',
     'timestamp',
@@ -68,10 +68,15 @@ COLUMNS = [
     'cloudcover'
 ]
 
-# Target for given station
-TARGET_COLUMN = [
-    'num_of_rents'
+STATIONS_COLUMNS = [
+    'station_nbr',
+    'name',
+    'lat',
+    'lng',
 ]
+
+# Target for given station
+TARGET_COLUMN = 'num_of_rents'
 
 # TODO Update columns when bikedata is processed into station coordinates
 BIKE_COLUMNS = [
@@ -81,6 +86,7 @@ BIKE_COLUMNS = [
     'rental_place',
     'return_place',
     'year',
+    'week_day',
 ]
 
 WEATHER_COLS = [
@@ -97,6 +103,12 @@ WEATHER_COLS = [
     'visibility',
     'pressure',
     'cloudcover'
+]
+
+GROUP_COLS = [
+    'year',
+    'time',
+    'timestamp'
 ]
 
 # List of categorical columns
@@ -134,4 +146,4 @@ EXTRA_COLS = [
 
 DATETIME_COLUMN = 'start_time'
 
-FULL_DATA = BIKE_COLUMNS + WEATHER_COLS + TARGET_COLUMN
+FULL_DATA = BIKE_COLUMNS + WEATHER_COLS + [TARGET_COLUMN]

@@ -4,7 +4,7 @@ from glob import glob
 from datetime import datetime, timedelta
 import time
 import os
-from settings import *
+from helpers.settings import *
 
 weather_data_files = sorted(glob('./data/weather/*.json'))
 # Files description https://www.worldweatheronline.com/developer/api/docs/historical-weather-api.aspx
@@ -47,7 +47,7 @@ for file in weather_data_files:
                 hour['cloudcover']
             ])
 
-    df = pd.DataFrame(month_data, columns=COLUMNS)
+    df = pd.DataFrame(month_data, columns=WEATHER_DATA_COLUMNS)
     path = file.split('.')[1]
     df.to_csv(f'.{path}.csv')
     df.to_csv(concat_file, mode='a', header=False, index=False)

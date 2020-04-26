@@ -98,6 +98,7 @@ Generated dataset has format of:
     'rental_place',
     'return_place',
     'year',
+    'week_day',
     'totalSnow_cm',
     'sunrise',
     'sunset',

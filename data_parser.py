@@ -4,7 +4,9 @@ import os
 from glob import glob
 import time
 from datetime import datetime
-from settings import COLUMNS
+from helpers.settings import WEATHER_DATA_COLUMNS
+
+raise ValueError(f'Comment this if you want to run the file')
 
 data_path = 'data/bike_data/'
 
@@ -23,7 +25,7 @@ for file in existing_files:
 
 unique_places = []
 
-weather_data = pd.read_csv('data/weather/weather.csv', names=COLUMNS)
+weather_data = pd.read_csv('data/weather/weather.csv', names=WEATHER_DATA_COLUMNS)
 weather_data['timestamp'] = weather_data['timestamp'].astype(float)
 
 
@@ -75,7 +77,7 @@ for file in xlsx_files:
     data['return_place'] = data['return_place'].apply(trim_and_remove_slash)
 
     print('Copying data from weather data into rows: ' + file)
-    for column in COLUMNS[3:]:
+    for column in WEATHER_DATA_COLUMNS[3:]:
         print('Processing: ' + column)
         data[column] = data[['start_time', 'year']].apply(extract_weather_column(column), axis=1)
 
@@ -105,7 +107,7 @@ for file in csv_files:
     data['return_place'] = data['return_place'].apply(trim_and_remove_slash)
 
     print('Copying data from weather data into rows: ' + file)
-    for column in COLUMNS[3:]:
+    for column in WEATHER_DATA_COLUMNS[3:]:
         print('Processing: ' + column)
         data[column] = data[['start_time', 'year']].apply(extract_weather_column(column), axis=1)
 
