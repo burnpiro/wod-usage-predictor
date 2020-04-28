@@ -14,7 +14,7 @@ def create_heated_map(stations: Dict, with_markers=False):
         stations_data = []
         for loc in stations[hour].values():
             stations_data.append(
-                [loc['lat'], loc['lng'], loc['count']])
+                [loc['lat'], loc['lng'], loc['rents']])
         df_hour_list.append(stations_data)
 
     HeatMapWithTime(df_hour_list,

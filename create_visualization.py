@@ -7,7 +7,7 @@ if __name__ == '__main__':
 
     """
         heated map needs input in form of list of
-        Dict station_name: {lat: val, lng: val, count: val}
+        Dict station_name: {lat: val, lng: val, rents: val}
         for each hour
     """
     create_heated_map(stations, with_markers=False)
