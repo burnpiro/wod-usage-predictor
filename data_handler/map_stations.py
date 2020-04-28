@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
-from dataset_concat import load_bikes_data
+from data_handler.dataset_concat import load_bikes_data
 
 
 def get_stations_positions_mapping() -> Dict[str, Tuple]:
