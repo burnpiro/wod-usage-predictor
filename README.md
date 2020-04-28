@@ -4,6 +4,10 @@ ML project to predict usage of WRM
 
 ## Getting Started
 
+Data input file (compressed with 7z because standard zip had over 130MB which is 1/7 of the original file):
+
+[Download data/model_input.7z](./data/model_input.7z)
+
 ### Prerequisites
 
 Packages:
