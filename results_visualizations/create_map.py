@@ -1,12 +1,11 @@
 from typing import List, Dict
-import random
 
 import folium
 from folium.plugins import HeatMapWithTime
 
 
 def create_heated_map(stations: Dict, with_markers=False):
-    m = folium.Map(location=[51.094668940345535, 17.026888132095333],
+    m = folium.Map(location=[51.0946, 17.026],
                    tiles="Stamen Terrain",
                    zoom_start=12)
 
