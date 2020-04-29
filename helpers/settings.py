@@ -49,6 +49,12 @@ WEATHER_CODES = {
     395: 'Moderate or heavy snow in area with thunder'
 }
 
+INPUT_FILE_COLUMNS = [
+    'name', 'lat', 'lng', 'timestamp', 'year', 'week_day', 'time', 'totalSnow_cm', 'sunrise', 'sunset', 'tempC',
+    'FeelsLikeC', 'HeatIndexC', 'windspeedKmph', 'weatherCode', 'precipMM', 'humidity', 'visibility', 'pressure',
+    'cloudcover', 'num_of_rents'
+]
+
 WEATHER_DATA_COLUMNS = [
     'date',
     'time',
@@ -118,30 +124,72 @@ CATEGORIES = {
 
 # Columns to be normalized
 # TODO Update columns when bikedata is processed into station coordinates
-NORM_COLS = [
-    'tempC',
-    'FeelsLikeC',
-    'HeatIndexC',
-]
+NORM_COLS = {
+    'tempC': {
+        'mu': 8,
+        'std': 3
+    },
+    'FeelsLikeC': {
+        'mu': 8,
+        'std': 3
+    },
+    'HeatIndexC': {
+        'mu': 8,
+        'std': 3
+    },
+    'pressure': {
+        'mu': 1013,
+        'std': 15
+    },
+}
+
+ADJUST_COLUMNS = {
+    'lat': {
+        'amount': -51.0
+    },
+    'lng': {
+        'amount': -16.0
+    }
+}
 
 # Columns to be scaled from 0-1
 # TODO Update columns when bikedata is processed into station coordinates
-SCALE_COLS = [
-    'year',
-    'totalSnow_cm',
-    'sunrise',
-    'sunset',
-    'windspeedKmph',
-    'precipMM',
-    'humidity',
-    'visibility',
-    'pressure',
-    'cloudcover',
-]
+SCALE_COLS = {
+    'time': {
+        'min': 0,
+        'max': 1380
+    },
+    'sunrise': {
+        'min': 0,
+        'max': 1380
+    },
+    'sunset': {
+        'min': 0,
+        'max': 1380
+    },
+    'windspeedKmph': {
+        'min': 0,
+        'max': 150
+    },
+    'humidity': {
+        'min': 0,
+        'max': 100
+    },
+    'visibility': {
+        'min': 0,
+        'max': 100
+    },
+    'cloudcover': {
+        'min': 0,
+        'max': 100
+    },
+}
 
 # Columns which are copied from dataset directly
 EXTRA_COLS = [
-
+    'week_day',
+    'totalSnow_cm',
+    'precipMM'
 ]
 
 DATETIME_COLUMN = 'start_time'

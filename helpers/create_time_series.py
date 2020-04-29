@@ -17,7 +17,7 @@ def time_concat(time_col):
     return lambda x: sum_times(x, 'year', time_col)
 
 
-def generate_weather_time_series(out_file='data/model_input.csv',
+def generate_weather_time_series(out_file='data/model_input2.csv',
                                  weather_file='data/weather/weather.csv',
                                  stations_file='data/stations.csv',
                                  bike_files=[
@@ -104,7 +104,7 @@ def generate_weather_time_series(out_file='data/model_input.csv',
             (data['full_timestamp'] >= hour_weather[weather_time_column]) &
             (data['full_timestamp'] < hour_weather[weather_time_column] + (60 * 60))
             ]
-        
+
         for s_id, station in stations.iterrows():
             transactions_per_station = transactions_matching_conditions
 
@@ -125,7 +125,8 @@ def generate_weather_time_series(out_file='data/model_input.csv',
         # Display progess bar
         sys.stdout.write('\r')
         sys.stdout.write("[%-20s] %d%% (%d/%d)" % (
-            '=' * int(w_id / num_of_weather_inputs), int(w_id / num_of_weather_inputs), w_id, num_of_weather_inputs))
+            '=' * int(20 * w_id / num_of_weather_inputs), int(100 * w_id / num_of_weather_inputs), w_id,
+            num_of_weather_inputs))
         sys.stdout.flush()
 
     out_dataset = pd.DataFrame(out_dataset, columns=out_cols)

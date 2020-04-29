@@ -1,5 +1,5 @@
 import pandas as pd
-from settings import *
+from helpers.settings import *
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 
@@ -31,26 +31,29 @@ def extract_data(train_file_path, columns, categorical_columns=CATEGORIES, inter
     return all_data
 
 
-def preproc_data(data, norm_cols=NORM_COLS, scale_cols=SCALE_COLS, train_scale=None):
+def preproc_data(data, norm_cols=NORM_COLS, scale_cols=SCALE_COLS, adjust_cols=ADJUST_COLUMNS):
     """
     Scales and normalize data
     :param data: pd.DataFrame
-    :param norm_cols: List[string]
-    :param scale_cols: List[string]
-    :param train_scale: pd.DataFrame - dataframe used as a scale provider
-    :return:
+    :param norm_cols: Dict[Dict[mu: float, std: float]] - list of columns to normalize
+    :param adjust_cols: Dict[Dict[amount: float]] - amount added to each col value
+    :param scale_cols: Dict[Dict[min: float, max: float]] - list of columns to scale <0,1>
+    :return: pd.DataFrame
     """
     # Make a copy, not to modify original data
     new_data = data.copy()
-    if train_scale is None:
-        train_scale = data
     if norm_cols:
-        # Normalize temp and percipation
-        new_data[norm_cols] = StandardScaler().fit(train_scale[norm_cols]).transform(new_data[norm_cols])
+        # Normalize
+        for key, params in norm_cols.items():
+            new_data[key] = (new_data[key] - params['mu'])/params['std']
 
     if scale_cols:
         # Scale year and week no but within (0,1)
-        new_data[scale_cols] = MinMaxScaler(feature_range=(0, 1)).fit(train_scale[scale_cols]).transform(
-            new_data[scale_cols])
+        for key, params in scale_cols.items():
+            new_data[key] = (new_data[key] + params['min'])/(params['max'] + params['min'])
 
-    return new_data, train_scale
+    if adjust_cols:
+        for key, params in adjust_cols.items():
+            new_data[key] = new_data[key] + params['amount']
+
+    return new_data
